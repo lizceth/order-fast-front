@@ -1,0 +1,32 @@
+<nb-layout>
+    <nb-layout-header  class="header-actions" fixed>
+        <nb-actions>
+            <!-- <nb-action icon="menu-2-outline" (click)="toggle()"></nb-action> -->
+            <nb-action>
+                <img src="https://images.vexels.com/media/users/3/245747/isolated/preview/fc5e5179e126bb8b8878c65ed0639179-great-job-badge.png" alt="" height="70px">
+              <!-- <img *ngIf="!hidden" src="assets/logo-lamb-learning-blanco.svg" alt="Lamb" class="logo"/> -->
+            </nb-action>
+          </nb-actions>
+          <nb-actions>
+            <nb-action class="p-0">
+                <button nbButton size="small" (click)="logout()" [nbSpinner]="loading">Salir</button>
+            </nb-action>
+    </nb-actions>
+    
+    
+        <!-- <div class="d-flex align-items-center justify-content-between">
+            <label routerLink="/login">Company Name</label>
+            <label for="">ssss</label>
+        </div> -->
+        
+    </nb-layout-header>
+    <nb-sidebar responsive tag="core-sidebar" style="background: red">
+        <!-- <nb-sidebar-header class="bakground text-center">
+            <strong>PROGRAMER</strong>
+        </nb-sidebar-header> -->
+        <nb-menu [items]="MENU_ITEMS" tag="core-menu"></nb-menu>
+    </nb-sidebar>
+    <nb-layout-column class="found" [nbSpinner]="loading" nbSpinnerSize="tiny" nbSpinnerStatus="primary">
+        <router-outlet></router-outlet>
+    </nb-layout-column>
+</nb-layout>
