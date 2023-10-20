@@ -12,6 +12,13 @@ import { GeneralService } from 'src/app/providers';
 export class ScaffoldComponent implements OnInit {
   loading: boolean = false;
   MENU_ITEMS: NbMenuItem[] = [
+
+    {
+      title: "Menú",
+      icon: "droplet-outline",
+      link: "/pages/menu",
+      pathMatch: "prefix"
+    },
     {
       title: "Administrar",
       icon: "settings-outline",

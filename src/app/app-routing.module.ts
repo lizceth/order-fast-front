@@ -31,6 +31,10 @@ const routes: Routes = [
             path: 'attention',
             loadChildren: () => import('./pages/attention/attention.module').then(m => m.AttentionModule)
           },
+          {
+            path: 'menu',
+            loadChildren: () => import('./pages/menu/menu.module').then(m => m.MenuModule)
+          },
           // {
           //     path: '**',
           //     component: NotfoundComponent,
