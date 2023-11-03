@@ -1,6 +1,20 @@
 <nb-card>
     <nb-card-header>
         <h2>Hola</h2>
+        <hr>
+        <div class="row">
+            <div class="col-md-3">
+                <nb-select multiple fullWidth placeholder="Categoría" size="medium">
+                    <nb-option value="P">Postres</nb-option>
+                    <nb-option value="B">Bebidas</nb-option>
+                    <nb-option value="C">Comidas</nb-option>
+                    <nb-option value="H">Helados</nb-option>
+                  </nb-select>
+            </div>
+            <div class="col-md-4"></div>
+            <div class="col-md-4"></div>
+        </div>
+        
     </nb-card-header>
     <nb-card-body>
         <div class="row">
@@ -11,23 +25,14 @@
                     </nb-card-header>
                     <nb-card-body>
                         <div class="row">
-                            <div class="col-md-4">
-                                <nb-card status="success">
-                                    <nb-card-header class="text-center">4.99 <br>pollito <br>fortaleza <br>
-                                        <img src="https://www.pngmart.com/files/2/Cooked-Chicken-Transparent-PNG.png" alt="" height="60">
+                            <div ng *ngFor="let item of catalogo" class="col-md-4" (click)="agregar(item)" style="cursor: pointer;">
+                                <nb-card [ngStyle]="{'background': item.color}">
+                                    <nb-card-header class="text-center" style="color: rgb(89, 88, 88);">{{item.precio}}<br>{{item.nombre}} <br>{{item.valoracion}} <br>
+                                        <img [src]="item.img" alt="" height="60">
                                     </nb-card-header>
                                 </nb-card>
                             </div>
-                            <div class="col-md-4">
-                                <nb-card status="success">
-                                    <nb-card-header>4.99</nb-card-header>
-                                </nb-card>
-                            </div>
-                            <div class="col-md-4">
-                                <nb-card status="success">
-                                    <nb-card-header>4.99</nb-card-header>
-                                </nb-card>
-                            </div>
+        
                         </div>
                     </nb-card-body>
                 </nb-card>
@@ -39,6 +44,37 @@
                         <button nbButton size="small" status="success" outline><nb-icon icon="funnel" status="success"></nb-icon></button>&nbsp;&nbsp;14:30 AM<br><br>
                         <button nbButton size="small" status="success" outline><nb-icon icon="funnel" status="success"></nb-icon></button>&nbsp;&nbsp;14:30 AM<br><br>
                         <button nbButton size="small" status="success" outline><nb-icon icon="funnel" status="success"></nb-icon></button>&nbsp;&nbsp;14:30 AM<br>
+                        <hr>
+                        <div class="table-responsive"> 
+                            <table class="table table-sm">
+                                <tbody>
+                                    <tr *ngFor="let car of carrito; let i = index" style="font-size: 11px;">
+                                        <td><img [src]="car.img" height="20" alt=""></td>
+                                        <td>{{car.nombre}}</td>
+                                        <td style="width: 90px;">
+                                            <nb-form-field>
+                                                <button nbButton nbPrefix size="tiny" status="danger" (click)="restar(car)" [disabled]="car.cantidad<2">-</button>
+                                                <input type="button"  [readOnly]="true" [value]="car.cantidad" fullWidth
+                                                nbInput fieldSize="tiny">
+                                                <button nbButton nbSuffix size="tiny" status="success" (click)="sumar(car)">+</button>
+                                            </nb-form-field>
+                                        </td>
+                                        <td>{{car.total | currency: ' '}}</td>
+                                        <td class="text-center">
+                                            <nb-icon icon="close-outline" status="danger" (click)="deleteCar(i)"
+                                             style="cursor: pointer;"></nb-icon> 
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="3" style="text-align: right;">Total</td>
+                                        <td style="font-weight: bold;">{{sumarCarrito | currency: ' '}}</td>
+                                    </tr>
+                                    
+                                </tfoot>
+                            </table>
+                        </div>
                     </nb-card-body>
                 </nb-card>
             </div>        
