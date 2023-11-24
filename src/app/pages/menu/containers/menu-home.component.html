@@ -1,14 +1,12 @@
-<nb-card>
+<nb-card accent="primary">
     <nb-card-header>
-        <h2>Hola</h2>
-        <hr>
         <div class="row">
             <div class="col-md-3">
-                <nb-select multiple fullWidth placeholder="Categoría" size="medium">
-                    <nb-option value="P">Postres</nb-option>
-                    <nb-option value="B">Bebidas</nb-option>
-                    <nb-option value="C">Comidas</nb-option>
-                    <nb-option value="H">Helados</nb-option>
+                <nb-select fullWidth placeholder="Categoría" size="small" (selectedChange)="changeCategory($event)">
+                    <nb-option value="1">Postres</nb-option>
+                    <nb-option value="2">Bebidas</nb-option>
+                    <nb-option value="3">Comidas</nb-option>
+                    <nb-option value="4">Helados</nb-option>
                   </nb-select>
             </div>
             <div class="col-md-4"></div>
@@ -18,27 +16,68 @@
     </nb-card-header>
     <nb-card-body>
         <div class="row">
-            <div class="col-md-9">
+            <div class="col-md-8">
                 <nb-card>
-                    <nb-card-header class="d-flex align-items-center justify-content-between">
-                        <strong>345 postres</strong><span>Recomendados</span>
-                    </nb-card-header>
                     <nb-card-body>
+                        <span>Recomendados</span><hr>
                         <div class="row">
-                            <div ng *ngFor="let item of catalogo" class="col-md-4" (click)="agregar(item)" style="cursor: pointer;">
+                            <div ng *ngFor="let item of recomendados" class="col-md-2" (click)="agregar(item)" style="cursor: pointer;">
                                 <nb-card [ngStyle]="{'background': item.color}">
-                                    <nb-card-header class="text-center" style="color: rgb(89, 88, 88);">{{item.precio}}<br>{{item.nombre}} <br>{{item.valoracion}} <br>
-                                        <img [src]="item.img" alt="" height="60">
-                                    </nb-card-header>
+                                    <nb-card-body style="color: rgb(89, 88, 88); padding: 10px;">
+                                        <label class="label">Cali</label><br>
+                                        <div class="text-center" style="padding: 0px;">
+                                            <img [src]="item.img" alt="" height="50">
+                                        </div>
+                                        <strong style="font-size: 9px;">{{item.nombre}}</strong>
+                                        <!-- <strong style="font-size: 11px;">S/. {{item.precio}}</strong> -->
+                                    </nb-card-body>
                                 </nb-card>
                             </div>
         
                         </div>
+                        <strong>Preferencias</strong>
+                    </nb-card-body>
+                    <nb-card-body>
+                        <div class="row">
+                            <div ng *ngFor="let item of selectCatalogo" class="col-md-4" (click)="agregar(item)" style="cursor: pointer;">
+                                <nb-card [ngStyle]="{'background': item.color}">
+                                    <nb-card-body style="color: rgb(89, 88, 88);">
+                                        <label class="label">Cali</label><br>
+                                        <div class="text-center">
+                                            <img [src]="item.img" alt="" height="80">
+                                        </div>
+                                        <strong style="font-size: 9px;">{{item.nombre}}</strong><br>
+                                        <strong style="font-size: 11px;">S/. {{item.precio}}</strong>
+                                    </nb-card-body>
+                                </nb-card>
+                            </div>
+        
+                        </div>
+                        <hr *ngIf="selectCatalogo.length>0"> 
+                        <div *ngFor="let c of catalogo">
+                            <strong>{{c.nombre}}</strong><hr>
+                            <div class="row">
+                                <div ng *ngFor="let item of c?.children" class="col-md-4" (click)="agregar(item)" style="cursor: pointer;">
+                                    <nb-card [ngStyle]="{'background': item.color}">
+                                        <nb-card-body style="color: rgb(89, 88, 88);">
+                                            <label class="label">Cali</label><br>
+                                            <div class="text-center">
+                                                <img [src]="item.img" alt="" height="80">
+                                            </div>
+                                            <strong style="font-size: 9px;">{{item.nombre}}</strong><br>
+                                            <strong style="font-size: 11px;">S/. {{item.precio}}</strong>
+                                        </nb-card-body>
+                                    </nb-card>
+                                </div>
+            
+                            </div>
+                        </div> 
+                        
                     </nb-card-body>
                 </nb-card>
             </div>
-            <div class="col-md-3">
-                <nb-card>
+            <div class="col-md-4">
+                <nb-card status="primary">
                     <nb-card-header> Mi Orden</nb-card-header>
                     <nb-card-body>
                         <button nbButton size="small" status="success" outline><nb-icon icon="funnel" status="success"></nb-icon></button>&nbsp;&nbsp;14:30 AM<br><br>
