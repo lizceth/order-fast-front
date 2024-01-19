@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { MenuRoutingModule } from './menu-routing.module';
 import { MenuHomeComponent } from './containers/menu-home.component';
 import { MenuComponent } from './menu.component';
-import { NbButtonModule, NbCardModule, NbIconModule } from '@nebular/theme';
+import { NbButtonModule, NbCardModule, NbFormFieldComponent, NbFormFieldModule, NbIconModule, NbInputModule, NbSelectModule } from '@nebular/theme';
 
 
 @NgModule({
@@ -17,7 +17,10 @@ import { NbButtonModule, NbCardModule, NbIconModule } from '@nebular/theme';
     MenuRoutingModule,
     NbCardModule,
     NbButtonModule,
-    NbIconModule
+    NbIconModule,
+    NbSelectModule,
+    NbFormFieldModule,
+    NbInputModule
   ]
 })
 export class MenuModule { }
